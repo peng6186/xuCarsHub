@@ -27,3 +27,15 @@ export type CarProps = {
   transmission: string;
   year: number;
 };
+
+export type FiltersProps = {
+  manufacturer?: string;
+  year?: number;
+  model?: string;
+  limit?: number;
+  fuel?: string;
+};
+
+export type SearchParamsProps = {
+  searchParams: FiltersProps
+}

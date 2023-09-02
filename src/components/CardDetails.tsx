@@ -112,6 +112,7 @@ const CardDetails = ({ isOpen, closeMenu, car }: CarDetailsProps) => {
                         >
                           <h4 className="text-grey capitalize">
                             {key.split("_").join(" ")}
+                            {/* {key} */}
                           </h4>
                           <p className="text-slate-600 font-semibold">{val}</p>
                         </div>

@@ -1,9 +1,17 @@
 import React from "react";
 import { SearchBar, CustomFilter, CarCard } from ".";
 import { fetchCars } from "@/utils";
+import { SearchParamsProps } from "@/types";
+import { fuels, yearsOfProduction } from "@/contants";
 
-const Display = async () => {
-  const allCars = await fetchCars();
+const Display = async ({ searchParams }: SearchParamsProps) => {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || "",
+    model: searchParams.model || "",
+    year: searchParams.year || 2022,
+    limit: searchParams.limit || 10,
+    fuel: searchParams.fuel || "",
+  });
   console.log(allCars);
   const isDataEmpty =
     !allCars || allCars.length === 0 || !Array.isArray(allCars);
@@ -18,8 +26,8 @@ const Display = async () => {
         <SearchBar />
 
         <div className="home__filter-container">
-          <CustomFilter title="fuel" />
-          <CustomFilter title="year" />
+          <CustomFilter title="fuel" options={fuels} />
+          <CustomFilter title="year" options={yearsOfProduction} />
         </div>
       </div>
 

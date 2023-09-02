@@ -1,7 +1,8 @@
 import { CarProps } from "@/types";
+import { FiltersProps } from "@/types";
 // const customer_key = process.env.CAR_IMAGIN_API_KEY;
 
-export const fetchCars = async () => {
+export const fetchCars = async (filters: FiltersProps) => {
   const options = {
     method: "GET",
     headers: {
@@ -10,7 +11,7 @@ export const fetchCars = async () => {
     },
   };
   const resp = await fetch(
-    "https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=q3",
+    `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${filters.manufacturer}&model=${filters.model}&year=${filters.year}&fule_type=${filters.fuel}&limit=${filters.limit}`,
     options
   );
   const data = await resp.json();
@@ -42,7 +43,7 @@ export const getCarImage = (car: CarProps, angle?: string) => {
   url.searchParams.append("zoomType", "fullscreen");
   url.searchParams.append("modelYear", `${year}`);
   url.searchParams.append("angle", `${angle}`);
-  console.log(url);
+  // console.log(url);
 
   return `${url}`;
 };
