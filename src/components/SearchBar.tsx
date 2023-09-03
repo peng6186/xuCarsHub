@@ -14,8 +14,8 @@ const SearchBar = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // check whether any field is empy
-    if (manufacturer === "" || model === "") {
-      alert("Please fill out all the search area");
+    if (manufacturer === "" && model === "") {
+      alert("Please fill out at least one search area");
       return;
     }
     // update search param

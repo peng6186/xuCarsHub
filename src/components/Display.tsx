@@ -1,20 +1,30 @@
 import React from "react";
-import { SearchBar, CustomFilter, CarCard } from ".";
+import { SearchBar, CustomFilter, CarCard, Showmore } from ".";
 import { fetchCars } from "@/utils";
-import { SearchParamsProps } from "@/types";
+import { CarProps, FiltersProps, SearchParamsProps } from "@/types";
 import { fuels, yearsOfProduction } from "@/contants";
 
-const Display = async ({ searchParams }: SearchParamsProps) => {
-  const allCars = await fetchCars({
-    manufacturer: searchParams.manufacturer || "",
-    model: searchParams.model || "",
-    year: searchParams.year || 2022,
-    limit: searchParams.limit || 10,
-    fuel: searchParams.fuel || "",
-  });
-  console.log(allCars);
+const Display = async ({
+  allCars,
+  searchParams,
+}: //
+{
+  allCars: CarProps[];
+  searchParams: FiltersProps;
+}) => {
+  console.log("******Enter Display*****");
+
+  // const allCars = await fetchCars({
+  //   manufacturer: searchParams.manufacturer || "",
+  //   model: searchParams.model || "",
+  //   year: searchParams.year || 2022,
+  //   limit: searchParams.limit || 10,
+  //   fuel: searchParams.fuel || "",
+  // });
+
   const isDataEmpty =
     !allCars || allCars.length === 0 || !Array.isArray(allCars);
+
   return (
     <div className="mt-12 padding-x padding-y max-width" id="discover">
       <div className="home__text-container">
@@ -43,6 +53,10 @@ const Display = async ({ searchParams }: SearchParamsProps) => {
               <CarCard car={car} />
             ))}
           </div>
+          <Showmore
+            pageNumber={(searchParams?.limit || 10) / 10}
+            hasNext={(searchParams?.limit || 10) > allCars.length}
+          />
         </section>
       )}
     </div>

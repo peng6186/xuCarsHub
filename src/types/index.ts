@@ -37,5 +37,10 @@ export type FiltersProps = {
 };
 
 export type SearchParamsProps = {
-  searchParams: FiltersProps
-}
+  searchParams: FiltersProps;
+};
+
+export type ShowmoreProps = {
+  pageNumber: number;
+  hasNext: boolean;
+};
