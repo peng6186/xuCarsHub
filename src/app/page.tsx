@@ -3,7 +3,7 @@ import { SearchParamsProps } from "@/types";
 import { fetchCars } from "@/utils";
 
 export default async function Home({ searchParams }: SearchParamsProps) {
-  console.log("enter Home");
+  // console.log("enter Home");
 
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
@@ -12,7 +12,7 @@ export default async function Home({ searchParams }: SearchParamsProps) {
     limit: searchParams.limit || 10,
     fuel: searchParams.fuel || "",
   });
-  // console.log(allCars);
+  console.log(allCars);
 
   return (
     <main className="overflow-hidden">

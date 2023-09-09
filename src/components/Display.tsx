@@ -12,7 +12,7 @@ const Display = async ({
   allCars: CarProps[];
   searchParams: FiltersProps;
 }) => {
-  console.log("******Enter Display*****");
+  // console.log("******Enter Display*****");
 
   // const allCars = await fetchCars({
   //   manufacturer: searchParams.manufacturer || "",
