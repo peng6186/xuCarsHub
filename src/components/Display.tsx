@@ -12,18 +12,10 @@ const Display = async ({
   allCars: CarProps[];
   searchParams: FiltersProps;
 }) => {
-  // console.log("******Enter Display*****");
-
-  // const allCars = await fetchCars({
-  //   manufacturer: searchParams.manufacturer || "",
-  //   model: searchParams.model || "",
-  //   year: searchParams.year || 2022,
-  //   limit: searchParams.limit || 10,
-  //   fuel: searchParams.fuel || "",
-  // });
-
   const isDataEmpty =
     !allCars || allCars.length === 0 || !Array.isArray(allCars);
+
+  // console.log(allCars);
 
   return (
     <div className="mt-12 padding-x padding-y max-width" id="discover">
@@ -44,13 +36,17 @@ const Display = async ({
       {isDataEmpty ? (
         <div className="home__error-container">
           <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-          <p>{allCars?.message}</p>
         </div>
       ) : (
         <section>
           <div className="home__cars-wrapper">
-            {allCars.map((car) => (
-              <CarCard car={car} />
+            {allCars.map((car, idx) => (
+              <CarCard
+                car={car}
+                // it's better not use idx as key; however, the data returned by idx doesn't provide a id field.
+                // it could be improved if we could find alternative unique identifier as key.
+                key={`${car.make}${car.model}${car.year}${idx}`}
+              />
             ))}
           </div>
           <Showmore

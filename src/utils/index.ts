@@ -1,6 +1,5 @@
 import { CarProps } from "@/types";
 import { FiltersProps } from "@/types";
-// const customer_key = process.env.CAR_IMAGIN_API_KEY;
 
 export const fetchCars = async (filters: FiltersProps) => {
   const options = {
@@ -10,12 +9,11 @@ export const fetchCars = async (filters: FiltersProps) => {
       "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
     },
   };
-  console.log(
-    `fetch url: ${`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${filters.manufacturer}&model=${filters.model}&year=${filters.year}&fuel_type=${filters.fuel}&limit=${filters.limit}`}`
-  );
+  // console.log(
+  //   `fetch url: ${`https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${filters.manufacturer}&model=${filters.model}&year=${filters.year}&fuel_type=${filters.fuel}&limit=${filters.limit}`}`
+  // );
   const resp = await fetch(
     `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${filters.manufacturer}&model=${filters.model}&year=${filters.year}&limit=${filters.limit}&fuel_type=${filters.fuel}`,
-    // `https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?make=${filters.manufacturer}&year=${filters.year}&model=${filters.model}&limit=${filters.limit}&fuel_type=${filters.fuel}`,
     options
   );
   const data = await resp.json();
